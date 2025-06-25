@@ -1,20 +1,11 @@
 <script>
-	import { captchaResponse, isLoading } from '$lib';
-	let makeHimCry = 'false';
-	let captchaResponseStr = '';
-	$: if ($captchaResponse?.startsWith('true')) {
-		makeHimCry = 'true';
-		captchaResponseStr = $captchaResponse.slice('true'.length);
-	} else if ($captchaResponse?.startsWith('false')) {
-		makeHimCry = 'false';
-		captchaResponseStr = $captchaResponse.slice('false'.length);
-	}
+	import { captchaResponse, isLoading, makeHimCry } from '$lib';
 </script>
 
-<div class="wrapper make-him-cry-{makeHimCry} thinking-{$isLoading}">
+<div class="wrapper make-him-cry-{$makeHimCry} thinking-{$isLoading}">
 	{#if $captchaResponse}
 		<div class="speech-bubble">
-			{captchaResponseStr}
+			{$captchaResponse}
 		</div>
 	{/if}
 	<div class="border-circle" id="one"></div>
@@ -24,7 +15,7 @@
 		<div class="body"></div>
 		<span class="shirt-text">I</span>
 		<span class="shirt-text">
-			{#if makeHimCry == 'true'}
+			{#if $makeHimCry}
 				💔
 			{:else}
 				❤️
@@ -63,7 +54,7 @@
 	<span class="music-note" id="one">
 		{#if $isLoading}
 			?
-		{:else if makeHimCry == 'true'}
+		{:else if $makeHimCry}
 			‼
 		{:else}
 			♫
@@ -72,7 +63,7 @@
 	<span class="music-note" id="two">
 		{#if $isLoading}
 			…
-		{:else if makeHimCry == 'true'}
+		{:else if $makeHimCry}
 			怒
 		{:else}
 			♪

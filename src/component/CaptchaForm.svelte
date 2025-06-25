@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { captchaResponse, isLoading } from '$lib';
+	import { captchaResponse, isLoading, makeHimCry } from '$lib';
 
 	let inputText = '';
 
@@ -16,7 +16,13 @@
 
 			const data = await res.json();
 			const content = data.response?.choices?.[0]?.message?.content;
-			captchaResponse.set(content || data);
+			if (content?.startsWith('true')) {
+				makeHimCry.set(true);
+				captchaResponse.set(content.slice('true'.length) || data);
+			} else if ($captchaResponse?.startsWith('false')) {
+				makeHimCry.set(false);
+				captchaResponse.set(content.slice('false'.length) || data);
+			}
 		} finally {
 			isLoading.set(false);
 		}
@@ -32,7 +38,15 @@
 			required
 			disabled={$isLoading}
 		/>
-		<button type="submit" disabled={$isLoading}>Send</button>
+		<button type="submit" disabled={$isLoading}>
+			{#if $isLoading}
+				⏳
+			{:else if $makeHimCry}
+				✔
+			{:else}
+				Send
+			{/if}</button
+		>
 	</form>
 </div>
 
