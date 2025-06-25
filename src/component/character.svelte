@@ -1,4 +1,21 @@
-<div class="wrapper">
+<script>
+	import { captchaResponse, isLoading } from '$lib';
+	let makeHimCry = 'false';
+	let isLoadingStr = 'false';
+	$: if ($captchaResponse?.startsWith('true')) {
+		makeHimCry = 'true';
+	} else if ($captchaResponse?.startsWith('false')) {
+		makeHimCry = 'false';
+	}
+	$: isLoadingStr = $isLoading ? 'true' : 'false';
+</script>
+
+<div class="wrapper make-him-cry-{makeHimCry} thinking-{isLoadingStr}">
+	{#if $captchaResponse}
+		<div class="speech-bubble">
+			{$captchaResponse}
+		</div>
+	{/if}
 	<div class="border-circle" id="one"></div>
 	<div class="border-circle" id="two"></div>
 	<div class="background-circle">
@@ -42,8 +59,7 @@
 
 <style>
 	.wrapper {
-		display: table-cell;
-		vertical-align: middle;
+		display: grid;
 		position: relative;
 	}
 	.background-circle {
@@ -622,6 +638,46 @@
 		}
 		100% {
 			transform: scaleY(1) translateY(0px) translateZ(0);
+		}
+	}
+	.speech-bubble {
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		background: white;
+		padding: 10px 15px;
+		border-radius: 20px;
+		font-size: 16px;
+		color: #333;
+		max-width: 300px;
+		text-align: center;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		z-index: 10;
+		animation: fadeIn 0.3s ease;
+		overflow: auto;
+		max-height: 300px;
+	}
+
+	.speech-bubble:after {
+		content: '';
+		position: absolute;
+		bottom: -10px;
+		left: 50%;
+		margin-left: -10px;
+		border-width: 10px 10px 0;
+		border-style: solid;
+		border-color: white transparent;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translate(-50%, 10px);
+		}
+		to {
+			opacity: 1;
+			transform: translate(-50%, 0);
 		}
 	}
 </style>
