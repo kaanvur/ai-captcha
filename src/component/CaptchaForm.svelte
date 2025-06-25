@@ -28,16 +28,12 @@
 		<input
 			type="text"
 			bind:value={inputText}
-			placeholder="Captcha text girin"
+			placeholder="Hurt me if you can"
 			required
 			disabled={$isLoading}
 		/>
-		<button type="submit" disabled={$isLoading}>Gönder</button>
+		<button type="submit" disabled={$isLoading}>Send</button>
 	</form>
-
-	{#if $isLoading}
-		<p>Yükleniyor...</p>
-	{/if}
 </div>
 
 <style>

@@ -1,19 +1,20 @@
 <script>
 	import { captchaResponse, isLoading } from '$lib';
 	let makeHimCry = 'false';
-	let isLoadingStr = 'false';
+	let captchaResponseStr = '';
 	$: if ($captchaResponse?.startsWith('true')) {
 		makeHimCry = 'true';
+		captchaResponseStr = $captchaResponse.slice('true'.length);
 	} else if ($captchaResponse?.startsWith('false')) {
 		makeHimCry = 'false';
+		captchaResponseStr = $captchaResponse.slice('false'.length);
 	}
-	$: isLoadingStr = $isLoading ? 'true' : 'false';
 </script>
 
-<div class="wrapper make-him-cry-{makeHimCry} thinking-{isLoadingStr}">
+<div class="wrapper make-him-cry-{makeHimCry} thinking-{$isLoading}">
 	{#if $captchaResponse}
 		<div class="speech-bubble">
-			{$captchaResponse}
+			{captchaResponseStr}
 		</div>
 	{/if}
 	<div class="border-circle" id="one"></div>
@@ -22,7 +23,13 @@
 		<div class="triangle-light"></div>
 		<div class="body"></div>
 		<span class="shirt-text">I</span>
-		<span class="shirt-text">♥</span>
+		<span class="shirt-text">
+			{#if makeHimCry == 'true'}
+				💔
+			{:else}
+				❤️
+			{/if}
+		</span>
 		<span class="shirt-text">C</span>
 		<span class="shirt-text">S</span>
 		<span class="shirt-text">S</span>
@@ -53,8 +60,24 @@
 			</div>
 		</div>
 	</div>
-	<span class="music-note" id="one">&#9835;</span>
-	<span class="music-note" id="two">&#9834;</span>
+	<span class="music-note" id="one">
+		{#if $isLoading}
+			?
+		{:else if makeHimCry == 'true'}
+			‼
+		{:else}
+			♫
+		{/if}
+	</span>
+	<span class="music-note" id="two">
+		{#if $isLoading}
+			…
+		{:else if makeHimCry == 'true'}
+			怒
+		{:else}
+			♪
+		{/if}
+	</span>
 </div>
 
 <style>
