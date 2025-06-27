@@ -11,7 +11,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		'Content-Type': 'application/json'
 	};
 	const payload = {
-		model: 'deepseek/deepseek-chat-v3-0324:free',
+		model: 'meta-llama/llama-4-maverick:free',
 		messages: [
 			{
 				role: 'system',

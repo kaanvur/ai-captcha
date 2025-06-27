@@ -253,6 +253,7 @@
 		animation: grow 0.7s 2.6s 1 ease;
 		animation-fill-mode: forwards;
 		transform: scale(0);
+		transition: 500ms all ease-out;
 	}
 	.ear#left {
 		left: -12px;
@@ -270,6 +271,36 @@
 		animation: grow 0.7s 2s 1 ease;
 		animation-fill-mode: forwards;
 		transform: scale(0);
+		&::after {
+			content: '';
+			display: block;
+			height: 0;
+			width: 24px;
+			translate: 20% 0;
+			background:
+				radial-gradient(
+					circle at 100% 50%,
+					transparent 20%,
+					rgba(255, 255, 255, 1) 21%,
+					rgba(255, 255, 255, 1) 34%,
+					transparent 35%,
+					transparent
+				),
+				radial-gradient(
+						circle at 0% 50%,
+						transparent 20%,
+						rgba(255, 255, 255, 1) 21%,
+						rgba(255, 255, 255, 1) 34%,
+						transparent 35%,
+						transparent
+					)
+					0 -20px;
+			background-color: transparent;
+			background-size: 30px 40px;
+			background-position-x: -18px;
+			border-radius: 0 0 10px 10px;
+			transition: 1s all ease;
+		}
 	}
 	.eye-shadow#left {
 		left: 35px;
@@ -406,6 +437,18 @@
 		animation: text-anim 0.7s 3.4s 1 ease;
 	}
 
+	.make-him-cry-true {
+		.head {
+			animation: crying-head 2s ease 0s infinite alternate forwards;
+		}
+		.mouth {
+			height: 23px;
+			border-radius: 10px 10px 0 0;
+		}
+		.eye-shadow::after {
+			height: 200px;
+		}
+	}
 	@keyframes grow {
 		0% {
 			position: absolute;
@@ -692,6 +735,52 @@
 		to {
 			opacity: 1;
 			transform: translate(-50%, 0);
+		}
+	}
+
+	@keyframes crying-head {
+		0% {
+			animation-timing-function: ease-in;
+			opacity: 1;
+			transform: translateY(45px);
+		}
+
+		24% {
+			opacity: 1;
+		}
+
+		40% {
+			animation-timing-function: ease-in;
+			transform: translateY(24px);
+		}
+
+		65% {
+			animation-timing-function: ease-in;
+			transform: translateY(12px);
+		}
+
+		82% {
+			animation-timing-function: ease-in;
+			transform: translateY(6px);
+		}
+
+		93% {
+			animation-timing-function: ease-in;
+			transform: translateY(4px);
+		}
+
+		25%,
+		55%,
+		75%,
+		87% {
+			animation-timing-function: ease-out;
+			transform: translateY(0px);
+		}
+
+		100% {
+			animation-timing-function: ease-out;
+			opacity: 1;
+			transform: translateY(0px);
 		}
 	}
 </style>
