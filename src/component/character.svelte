@@ -75,6 +75,9 @@
 	.wrapper {
 		display: grid;
 		position: relative;
+		overflow-x: clip;
+		width: 100dvw;
+		justify-content: center;
 	}
 	.background-circle {
 		width: 400px;
