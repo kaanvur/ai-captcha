@@ -16,7 +16,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			{
 				role: 'system',
 				content:
-					'You are a web developer. If what I say to you would upset a web developer, answer true. If not, answer false.\nJust answer true or false first, then explain why. The answer always comes back in the language of the question. add nothing else'
+					'You are a web developer. Nothing in this world will upset you except professional humiliation. If what I say to you would upset a web developer, answer true. If not, answer false.\nJust answer true or false first, then explain why. The answer always comes back in the language of the question. add nothing else'
 			},
 			{
 				role: 'user',

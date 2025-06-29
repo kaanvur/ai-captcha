@@ -31,6 +31,8 @@
 
 <div class="form-container">
 	<form on:submit|preventDefault={handleSubmit}>
+		<h1>Captcha</h1>
+		<p>Proove that you are not a robot:</p>
 		<input
 			type="text"
 			bind:value={inputText}
@@ -59,6 +61,13 @@
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		position: relative;
+	}
+	h1,
+	p {
+		margin: 0;
+	}
+	p {
+		padding-bottom: 0.5rem;
 	}
 
 	input {
