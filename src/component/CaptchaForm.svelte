@@ -72,8 +72,8 @@
 
 	input {
 		padding: 0.5rem;
-		margin-right: 0.5rem;
-		width: 70%;
+		margin-right: 1%;
+		width: 73%;
 		border: 1px solid thistle;
 	}
 
@@ -84,6 +84,6 @@
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
-		min-width: 20%;
+		min-width: 24%;
 	}
 </style>
