@@ -54,7 +54,7 @@
 
 <style>
 	.form-container {
-		margin: 2rem auto;
+		margin: 1rem auto;
 		max-width: 500px;
 		width: 100%;
 		padding: 1rem;
@@ -62,9 +62,9 @@
 		border-radius: 4px;
 		position: relative;
 	}
-	h1,
-	p {
-		margin: 0;
+	h1 {
+		font-size: 1.5rem;
+		font-weight: 700;
 	}
 	p {
 		padding-bottom: 0.5rem;
@@ -74,6 +74,7 @@
 		padding: 0.5rem;
 		margin-right: 0.5rem;
 		width: 70%;
+		border: 1px solid thistle;
 	}
 
 	button {
@@ -83,5 +84,6 @@
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
+		min-width: 20%;
 	}
 </style>
