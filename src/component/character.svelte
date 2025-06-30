@@ -708,7 +708,7 @@
 		background: white;
 		padding: 10px 15px;
 		border-radius: 20px;
-		font-size: 16px;
+		font-size: 14px;
 		color: #333;
 		max-width: 300px;
 		text-align: center;
