@@ -30,7 +30,7 @@
 		<input
 			type="text"
 			bind:value={inputText}
-			placeholder="Hurt me if you can"
+			placeholder="make the developer cry"
 			required
 			disabled={$isLoading}
 		/>
