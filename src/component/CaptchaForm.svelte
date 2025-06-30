@@ -55,6 +55,7 @@
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		position: relative;
+		text-align: left;
 	}
 	h1 {
 		font-size: 1.5rem;
