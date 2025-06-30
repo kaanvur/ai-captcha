@@ -719,17 +719,6 @@
 		max-height: 165px;
 	}
 
-	.speech-bubble:after {
-		content: '';
-		position: absolute;
-		bottom: -10px;
-		left: 50%;
-		margin-left: -10px;
-		border-width: 10px 10px 0;
-		border-style: solid;
-		border-color: white transparent;
-	}
-
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
