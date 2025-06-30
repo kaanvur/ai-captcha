@@ -1,38 +1,91 @@
-# sv
+# AI Captcha - The Emotional Developer
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This project is a creative and interactive web application that subverts the traditional "prove you're not a robot" captcha. Instead of identifying traffic lights or distorted text, users are challenged to interact with an AI-powered character who plays the role of a web developer. The goal? To see if you can say something that would be professionally upsetting or humiliating enough to make the character "cry."
 
-## Creating a project
+## How It Works
 
-If you're seeing this, you've probably already done this step. Congrats!
+The application provides a simple interface with a text input field and an animated character built purely with CSS. Here's the workflow:
+
+1.  **User Input**: The user types a message into the input field, with the prompt "Hurt me if you can."
+2.  **API Request**: The submitted text is sent to a SvelteKit backend API endpoint (`/api/captcha`).
+3.  **AI Analysis**: The backend forwards the user's message to the **OpenRouter AI API**, specifically using the `meta-llama/llama-4-scout` model. The AI is given a system prompt to act as a web developer and determine if the user's statement is professionally upsetting.
+4.  **Structured Response**: The AI returns a structured JSON response containing:
+    - `makeHimCry` (boolean): `true` if the statement is deemed upsetting, `false` otherwise.
+    - `developer.response` (string): A textual response from the "developer" explaining their reaction.
+5.  **Frontend Reaction**: The frontend receives this JSON data and updates the UI accordingly:
+    - The animated character's expression changes. If `makeHimCry` is `true`, the character starts crying, its heart icon breaks (💔), and other visual cues appear.
+    - The `developer.response` text is displayed in a speech bubble above the character's head.
+
+## Features
+
+- **Interactive AI Character**: An animated character built entirely with CSS that provides real-time emotional feedback.
+- **AI-Powered Content Analysis**: Utilizes a large language model to analyze the sentiment and professional context of user input.
+- **Dynamic UI**: The user interface, built with Svelte, reacts instantly to the AI's response.
+- **Not a Real Captcha**: A fun exploration of AI interaction, not intended for actual security purposes.
+
+## Tech Stack
+
+- **Framework**: [SvelteKit](https://kit.svelte.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **AI**: [OpenRouter AI API](https://openrouter.ai/) (using Meta Llama 4 Scout)
+- **Styling**: Pure CSS for all animations and character design.
+- **Package Manager**: [pnpm](https://pnpm.io/)
+
+## Getting Started
+
+To run this project locally, follow these steps:
+
+**1. Clone the Repository**
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+git clone https://github.com/your-username/ai-captcha.git
+cd ai-captcha
 ```
 
-## Developing
+**2. Install Dependencies**
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This project uses `pnpm`. You can install it with `npm install -g pnpm`.
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm install
 ```
 
-## Building
+**3. Set Up Environment Variables**
 
-To create a production version of your app:
+You will need an API key from OpenRouter to use the AI service.
+
+- Create a file named `.env` in the root of the project.
+- Add your OpenRouter API key to the file:
+
+```env
+# .env
+AI_API_KEY="sk-or-v1-..."
+```
+
+**4. Run the Development Server**
 
 ```bash
-npm run build
+pnpm dev
 ```
 
-You can preview the production build with `npm run preview`.
+The application should now be running on `http://localhost:5173`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Project Structure
+
+```
+/
+├── src/
+│   ├── component/
+│   │   ├── CaptchaForm.svelte  # The main form component for user input.
+│   │   └── character.svelte    # The CSS-animated character component.
+│   ├── lib/
+│   │   └── index.ts            # Svelte stores for state management.
+│   └── routes/
+│       ├── +page.svelte        # The main page of the application.
+│       └── api/
+│           └── captcha/
+│               └── +server.ts  # The backend API endpoint that calls the AI.
+├── static/
+│   └── favicon.png
+└── svelte.config.js
+```
