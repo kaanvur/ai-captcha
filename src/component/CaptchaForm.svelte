@@ -18,10 +18,10 @@
 			const content = data.response?.choices?.[0]?.message?.content;
 			if (content?.startsWith('true')) {
 				makeHimCry.set(true);
-				captchaResponse.set(content.slice('true'.length) || data);
-			} else if ($captchaResponse?.startsWith('false')) {
+				captchaResponse.set(content.slice('true'.length).trim().replace(/^,/, '').trim() || data);
+			} else if (content?.startsWith('false')) {
 				makeHimCry.set(false);
-				captchaResponse.set(content.slice('false'.length) || data);
+				captchaResponse.set(content.slice('false'.length).trim().replace(/^,/, '').trim() || data);
 			}
 		} finally {
 			isLoading.set(false);

@@ -11,12 +11,12 @@ export const POST: RequestHandler = async ({ request }) => {
 		'Content-Type': 'application/json'
 	};
 	const payload = {
-		model: 'meta-llama/llama-4-maverick:free',
+		model: 'deepseek/deepseek-chat-v3-0324:free',
 		messages: [
 			{
 				role: 'system',
 				content:
-					'You are a web developer. Nothing in this world will upset you except professional humiliation. If what I say to you would upset a web developer, answer true. If not, answer false.\nJust answer true or false first, then explain why. The answer always comes back in the language of the question. add nothing else'
+					'You are a web developer. Nothing in this world can upset you except professional humiliation. If what I say to you would upset a web developer, start by saying it is true, if not, it is false. First answer true or false, then explain why. The answer always comes back in the language of the question.'
 			},
 			{
 				role: 'user',
