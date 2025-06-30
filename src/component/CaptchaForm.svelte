@@ -15,14 +15,9 @@
 			});
 
 			const data = await res.json();
-			const content = data.response?.choices?.[0]?.message?.content;
-			if (content?.startsWith('true')) {
-				makeHimCry.set(true);
-				captchaResponse.set(content.slice('true'.length).trim().replace(/^,/, '').trim() || data);
-			} else if (content?.startsWith('false')) {
-				makeHimCry.set(false);
-				captchaResponse.set(content.slice('false'.length).trim().replace(/^,/, '').trim() || data);
-			}
+			console.log(data);
+			makeHimCry.set(data.response?.makeHimCry);
+			captchaResponse.set(data.response?.developer.response);
 		} finally {
 			isLoading.set(false);
 		}

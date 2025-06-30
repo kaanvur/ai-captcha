@@ -11,18 +11,46 @@ export const POST: RequestHandler = async ({ request }) => {
 		'Content-Type': 'application/json'
 	};
 	const payload = {
-		model: 'deepseek/deepseek-chat-v3-0324:free',
+		model: 'meta-llama/llama-4-scout:free',
 		messages: [
 			{
 				role: 'system',
 				content:
-					'You are a web developer. Nothing in this world can upset you except professional humiliation. If what I say to you would upset a web developer, start by saying it is true, if not, it is false. First answer true or false, then explain why. The answer always comes back in the language of the question.'
+					'You are a web developer. Your task is to determine if a given statement would be professionally humiliating or upsetting to a fellow web developer. Respond in the specified JSON format. The JSON object must have two fields: "makeHimCry" (a boolean, true if the statement is upsetting, false otherwise) and "developer" (an object with a "response" field containing your explanation). The response must always be in the language of the user\'s question.'
 			},
 			{
 				role: 'user',
 				content: inputText
 			}
-		]
+		],
+		response_format: {
+			type: 'json_schema',
+			json_schema: {
+				name: 'developer_response',
+				strict: true,
+				schema: {
+					type: 'object',
+					properties: {
+						makeHimCry: {
+							type: 'boolean',
+							description:
+								'True if the statement is upsetting for a web developer, false otherwise.'
+						},
+						developer: {
+							type: 'object',
+							properties: {
+								response: {
+									type: 'string',
+									description: "The developer's response to the statement."
+								}
+							},
+							required: ['response']
+						}
+					},
+					required: ['makeHimCry', 'developer']
+				}
+			}
+		}
 	};
 
 	try {
@@ -33,11 +61,12 @@ export const POST: RequestHandler = async ({ request }) => {
 		});
 
 		const data = await response.json();
+		const modelResponse = JSON.parse(data.choices[0].message.content);
 
 		return new Response(
 			JSON.stringify({
 				success: true,
-				response: data
+				response: modelResponse
 			}),
 			{
 				headers: {
