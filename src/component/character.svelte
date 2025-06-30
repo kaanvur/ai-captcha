@@ -716,7 +716,7 @@
 		z-index: 10;
 		animation: fadeIn 0.3s ease;
 		overflow: auto;
-		max-height: 300px;
+		max-height: 165px;
 	}
 
 	.speech-bubble:after {
