@@ -1,5 +1,7 @@
 # AI Captcha - The Emotional Developer
 
+![AI Captcha Cover Image](static/cover.jpg)
+
 This project is a creative and interactive web application that subverts the traditional "prove you're not a robot" captcha. Instead of identifying traffic lights or distorted text, users are challenged to interact with an AI-powered character who plays the role of a web developer. The goal? To see if you can say something that would be professionally upsetting or humiliating enough to make the character "cry."
 
 ## How It Works
@@ -89,3 +91,7 @@ The application should now be running on `http://localhost:5173`.
 │   └── favicon.png
 └── svelte.config.js
 ```
+
+## Credits
+
+- The animated character design is inspired by the work of [Aakash Rodrigues](https://codepen.io/aakashrodrigues) on [CodePen](https://codepen.io/aakashrodrigues/pen/MWpRwz).
