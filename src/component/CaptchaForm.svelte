@@ -15,7 +15,6 @@
 			});
 
 			const data = await res.json();
-			console.log(data);
 			makeHimCry.set(data.response?.makeHimCry);
 			captchaResponse.set(data.response?.developer.response);
 		} finally {
