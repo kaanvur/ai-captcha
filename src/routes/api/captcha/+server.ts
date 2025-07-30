@@ -11,7 +11,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		'Content-Type': 'application/json'
 	};
 	const payload = {
-		model: 'meta-llama/llama-4-scout:free',
+		model: 'qwen/qwen3-235b-a22b:free',
 		messages: [
 			{
 				role: 'system',
@@ -61,6 +61,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		});
 
 		const data = await response.json();
+		console.log(data);
+
 		const modelResponse = JSON.parse(data.choices[0].message.content);
 
 		return new Response(
@@ -76,6 +78,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		);
 	} catch (error) {
 		const err = error instanceof Error ? error : new Error(String(error));
+		console.error(err);
 		return new Response(
 			JSON.stringify({
 				success: false,
